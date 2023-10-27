@@ -2,8 +2,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class WheelOfFortuneUserGame extends WheelOfFortune {
-    Scanner scanner = new Scanner(System.in);
-    String userName = scanner.next();
+    private final Scanner scanner = new Scanner(System.in);
+    private final String userName = scanner.next();
     @Override
     char getGuess(String previousGuesses) {
         char guessCh = scanner.next().charAt(0);

@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class WheelOfFortuneAIGame extends WheelOfFortune {
-    List<WheelOfFortunePlayer> playerList = new ArrayList<>();
+    private List<WheelOfFortunePlayer> playerList = new ArrayList<>();
     int playerIndex = 0;
 
     @Override

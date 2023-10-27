@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class RandomPlayer implements WheelOfFortunePlayer{
-    int randomNumber;
+    private int randomNumber;
     @Override
     public char nextGuess() {
         randomNumber = (int) (Math.floor(Math.random()* 26)  + 1);
