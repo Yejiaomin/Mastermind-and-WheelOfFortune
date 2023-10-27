@@ -18,7 +18,7 @@ public abstract class WheelOfFortune extends GuessingGame {
     }
 
     protected List<String> getPhraseList(){
-        List<String> phraseList = null;
+        List<String> phraseList;
         try {
             phraseList = Files.readAllLines(Paths.get("phrases.txt"));
             // Get a random phrase from the list
@@ -53,15 +53,12 @@ public abstract class WheelOfFortune extends GuessingGame {
     public GameRecord processGuess(String playId) {
         int guessRightLetters = 0;
         this.phrase = this.randomPhrase();
-        int score = 0;
         this.generateHiddenPhrase();
-        int n = 0;
-        int maxTimesTry = 20;
-        while (n < maxTimesTry) {
-            score = n*50/maxTimesTry + (guessRightLetters*50/phrase.replaceAll(" ", "").length());
+        while (playTime < maxTimesTry) {
+            score = playTime*50/maxTimesTry + (guessRightLetters*50/phrase.replaceAll(" ", "").length());
             System.out.println("enter a letter");
             char guessCh = getGuess(previousGuesses);
-            while ( (n != 0 && previousGuesses.indexOf(guessCh) >= 0) || !Character.isLetter(guessCh)) {
+            while ( (playTime != 0 && previousGuesses.indexOf(guessCh) >= 0) || !Character.isLetter(guessCh)) {
                 if (!Character.isLetter(guessCh)) {
                     System.out.println("Your guess is not a letter.");
                 } else {
@@ -77,7 +74,7 @@ public abstract class WheelOfFortune extends GuessingGame {
                             this.hiddenPhrase.setCharAt(i, guessCh);
                             guessRightLetters++;
                         }
-                        score = n*50/maxTimesTry + (guessRightLetters*50/phrase.replaceAll(" ", "").length());
+                        score = playTime*50/maxTimesTry + (guessRightLetters*50/phrase.replaceAll(" ", "").length());
                     }
 
                     System.out.println("Guess right! The updated phrase is: " + this.hiddenPhrase);
@@ -86,12 +83,12 @@ public abstract class WheelOfFortune extends GuessingGame {
                          return new GameRecord(score,playId);
                      }
                 }else{
-                    n++;
-                    System.out.println("The guessed letter does not occur in the phrase, you only have " + n + " chances");
+                     playTime++;
+                    System.out.println("The guessed letter does not occur in the phrase, you only have " + playTime + " chances");
                     System.out.println("your previous guesses are: " + this.previousGuesses);
                 }
             }
-        score = n*50/maxTimesTry + (guessRightLetters*50/phrase.replaceAll(" ", "").length());
+        score = playTime*50/maxTimesTry + (guessRightLetters*50/phrase.replaceAll(" ", "").length());
         return new GameRecord(score,playId);
     }
 

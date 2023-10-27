@@ -10,13 +10,10 @@ public class MasterMind extends GuessingGame {
     @Override
     GameRecord play() {
         System.out.println("numbers of 0,1,2,3,4,5,6,7 represent eight colors.");
-        int score = 0;
         secret = getSecret();
         System.out.println("secret: " + secret);
-        int n = 0;
-        int maxTimesTry = 4;
-        while(n < maxTimesTry){
-            score = (maxTimesTry-n)* 100/maxTimesTry;
+        while(playTime < maxTimesTry){
+            score = (maxTimesTry-playTime)* 100/maxTimesTry;
             StringBuilder secretSB = new StringBuilder(secret);
             StringBuilder guessSB = new StringBuilder(getGuess());
             exacts = this.checkExacts(guessSB, secretSB);
@@ -27,9 +24,9 @@ public class MasterMind extends GuessingGame {
             partials = this.checkPartials(guessSB, secretSB);
             System.out.println("The right color in right place guesses: " + exacts);
             System.out.println("The right color guesses: " + partials);
-            n++;
+            playTime++;
         }
-        score = (maxTimesTry-n)* 100/maxTimesTry;
+        score = (maxTimesTry-playTime)* 100/maxTimesTry;
         System.out.println("You lost the game! Your score is " + score);
         return new GameRecord(score,"user");
     }
