@@ -1,8 +1,7 @@
 import java.util.*;
 
 public class AllGamesRecord {
-    private final
-    List<GameRecord> list = new ArrayList<>();
+    private final List<GameRecord> list = new ArrayList<>();
 
     public void add(GameRecord gameRecord) {
         list.add(gameRecord);

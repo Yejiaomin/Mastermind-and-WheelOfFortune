@@ -1,9 +1,10 @@
 import javax.management.monitor.GaugeMonitor;
 
 public abstract class GuessingGame extends Game {
-    int playTime = 0;
-    int maxTimesTry = 4;
-    int score;
+
+    protected int playTime = 0;
+    protected int maxTimesTry = 4;
+    protected int score;
     @Override
     abstract GameRecord play() ;
 

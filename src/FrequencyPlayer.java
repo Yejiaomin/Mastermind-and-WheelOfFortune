@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class FrequencyPlayer implements WheelOfFortunePlayer{
-    String frequencyLetterOrder = "etaonrishdlfcmugypwbvkjxzq";
+    private final String frequencyLetterOrder = "etaonrishdlfcmugypwbvkjxzq";
     int index = 0;
     @Override
     public char nextGuess() {

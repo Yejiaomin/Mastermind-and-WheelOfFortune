@@ -1,11 +1,12 @@
 import java.util.*;
 
 public class MasterMind extends GuessingGame {
+    private final Scanner scanner = new Scanner(System.in);
+    private final String userName = scanner.next();
     private String secret = "";
     private int exacts;
     private int partials;
     private static final int CODESIZE = 4;
-    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     GameRecord play() {
@@ -19,7 +20,7 @@ public class MasterMind extends GuessingGame {
             exacts = this.checkExacts(guessSB, secretSB);
             if(exacts == CODESIZE){
                 System.out.println("You win! Your score is " + score);
-                return new GameRecord(score,"user");
+                return new GameRecord(score,userName);
             }
             partials = this.checkPartials(guessSB, secretSB);
             System.out.println("The right color in right place guesses: " + exacts);
@@ -28,7 +29,7 @@ public class MasterMind extends GuessingGame {
         }
         score = (maxTimesTry-playTime)* 100/maxTimesTry;
         System.out.println("You lost the game! Your score is " + score);
-        return new GameRecord(score,"user");
+        return new GameRecord(score,userName);
     }
     private List<Integer> getAllColors(){
         List<Integer> allColors  = new ArrayList<>();
@@ -94,6 +95,7 @@ public class MasterMind extends GuessingGame {
             return answer == 'y';
     }
     private void reset(){
+        playTime = 0;
         secret = "";
         exacts = 0;
         partials = 0;
@@ -119,8 +121,9 @@ public class MasterMind extends GuessingGame {
     }
 
     public static void main(String[] args) {
-        MasterMind masterMind = new MasterMind();
-        AllGamesRecord allGamesRecord = masterMind.playAll();
+        System.out.println("insert your user name");
+        Game userGame = new MasterMind();
+        AllGamesRecord allGamesRecord = userGame.playAll();
         System.out.println("highGameList:"+allGamesRecord.highGameList(3));  // or call specific functions of record
         System.out.println("Average is: "+allGamesRecord.average());
     }

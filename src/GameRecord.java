@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameRecord implements Comparable<GameRecord>{
-    int score;
-    String playerId;
-    List<Integer> playerScoreList = new ArrayList<>();
+    protected int score;
+    protected String playerId;
+    private final List<Integer> playerScoreList = new ArrayList<>();
     public GameRecord(int score, String playerId){
         this.score = score;
         this.playerId = playerId;

@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class AlphabeticalPlayer implements WheelOfFortunePlayer{
-    int index;
+    private int index;
     @Override
     public char nextGuess() {
         char guessCh = (char) ('a'+index);
